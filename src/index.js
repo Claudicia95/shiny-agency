@@ -7,13 +7,9 @@ import Freelances from './pages/Freelances'
 import Results from './pages/Results'
 import Error from './components/Error'
 import Header from './components/Header'
-import { createGlobalStyle } from 'styled-components'
-
-const GlobalStyle = createGlobalStyle`
-div {
-    font-family: 'Trebuchet MS', Helvetica, sans-serif;
-}
-`
+import Footer from './components/Footer'
+import GlobalStyle from './utils/style/GlobalStyle'
+import { ThemeProvider, SurveyProvider } from './utils/context'
 
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
@@ -21,6 +17,8 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
       <Router>
+      <ThemeProvider>
+        <SurveyProvider>
       <GlobalStyle />
         <Header />
         <Routes>
@@ -32,6 +30,9 @@ root.render(
           {/* La route générique doit être à la fin */}
           <Route path="*" element={<Error />} />
         </Routes>
+        <Footer/>
+        </SurveyProvider>
+        </ThemeProvider>
       </Router>
   </React.StrictMode>
 );
